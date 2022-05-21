@@ -7,7 +7,6 @@ import MessageLayout from "../component/MessageLayout";
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import {Button} from "@mui/material";
 import axios from "axios";
-import URI from '../helper/uri-list.js';
 
 function ResultPage() {
     const [data, setData] = useState({});
@@ -34,7 +33,7 @@ function ResultPage() {
             setMessage(message);
             setMessageToLayout(message, () => window.location.reload(false));
         });
-    }, []);
+    }, [id]);
 
     const setMessageToLayout = (message, callback) => {
         setMessageLayout(true);
@@ -45,7 +44,7 @@ function ResultPage() {
 
     const onDownloadButtonClick = () => {
         axios({
-            url: `${URI.baseUri}/api/v1/trial/${id}/result/download`,
+            url: `${process.env.BACKEND_URI}/api/v1/trial/${id}/result/download`,
             method: 'GET',
             responseType: 'blob',
         }).then(response => {

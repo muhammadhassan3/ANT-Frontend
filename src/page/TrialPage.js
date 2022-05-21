@@ -3,7 +3,6 @@ import {useNavigate, useLocation} from "react-router-dom";
 import Toolbar from "../component/Toolbar";
 import Loading from "../component/Loading";
 import TrialDataService from "../service/TrialDataService";
-import URI from "../helper/uri-list";
 import MessageLayout from "../component/MessageLayout";
 
 const styleAdult = {
@@ -43,6 +42,7 @@ let cueLocation = -2;
 let count = -1;
 
 function TrialPage() {
+    const uri = process.env.BACKEND_URI
     const navigate = useNavigate();
     const {state} = useLocation();
     const [type, setType] = useState('')
@@ -452,15 +452,15 @@ function TrialPage() {
                         bottom: '0'
                     }}>
                         <img className='image-width-50' style={{height: '48px', width: 'auto', margin: '4px 0px'}}
-                             alt='' src={targetTop ? URI.baseUri + assetUrl.image + upperImage + ".gif" : undefined}/>
+                             alt='' src={targetTop ? uri + assetUrl.image + upperImage + ".gif" : undefined}/>
                         <div className={'frame-container image-width-50'} style={{height: '48px', margin: '4px 0px'}}>
                             <img className={'frame-item image-width-50'} alt=''
-                                 src={URI.baseUri + assetUrl.image + image.fixationImage + ".gif"}/>
+                                 src={uri + assetUrl.image + image.fixationImage + ".gif"}/>
                             {targetCenter && <img className={'frame-item image-width-50'} alt=''
-                                 src={URI.baseUri + assetUrl.image + centerImage + ".gif"}/>}
+                                 src={uri + assetUrl.image + centerImage + ".gif"}/>}
                         </div>
                         <img className='image-width-50' style={{height: '48px', width: 'auto', margin: '4px 0px'}}
-                             alt='' src={(targetBottom) ? URI.baseUri + assetUrl.image + lowerImage + ".gif" : undefined}/>
+                             alt='' src={(targetBottom) ? uri + assetUrl.image + lowerImage + ".gif" : undefined}/>
                     </div>)}
             </div>
             :

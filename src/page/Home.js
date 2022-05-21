@@ -71,7 +71,11 @@ function HomePage(){
                 navigate('/instruction',{state: {token: data.token}});
             }else alert(data.message)
         }).catch(error => {
-            alert(error.response.data.message)
+            try{
+                alert(error.response.data.message)
+            }catch (e){
+                alert(error.message)
+            }
         });
     }
 

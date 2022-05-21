@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import Toolbar from '../component/Toolbar';
 import {useNavigate, useLocation} from 'react-router-dom';
 import UserDataService from '../service/UserDataService';
-import URI from '../helper/uri-list.js';
 import Loading from "../component/Loading";
 
 function InstructionPage() {
 
+  const uri = process.env.BACKEND_URI
   const navigate = useNavigate();
   const {state} = useLocation();
 
@@ -99,9 +99,9 @@ function InstructionPage() {
         <h4>Instruction</h4>
         <hr className='separator-solid'></hr>
         <p className='row flex-item'>{data.message.instruction1}</p>
-        <img src={URI.baseUri+data.assetsUrl.image+(data.type === "child" ? "ooloo" : "sample")+".gif"} className={'image-width-50 row'} alt={(data.type === "child" ? "ooloo" : "sample")}/>
+        <img src={uri+data.assetsUrl.image+(data.type === "child" ? "ooloo" : "sample")+".gif"} className={'image-width-50 row'} alt={(data.type === "child" ? "ooloo" : "sample")}/>
         <p className='row flex-item'>{data.message.instruction2}</p>
-        <img src={URI.baseUri+data.assetsUrl.image+"rrlrr.gif"} className={'image-width-50 row'} alt="rrlrr.gif"/>
+        <img src={uri+data.assetsUrl.image+"rrlrr.gif"} className={'image-width-50 row'} alt="rrlrr.gif"/>
         {data.message.instruction3 !== "" ? <p className='row flex-item'>{data.message.instruction3}</p> : null}
         <div className='row' style={{alignSelf: 'flex-end'}}>
           <button type='button' className='button-blue' onClick={handleClick}>Continue</button>
