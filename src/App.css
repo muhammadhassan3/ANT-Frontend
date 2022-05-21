@@ -1,38 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 .App {
   text-align: center;
+  font-family: 'Quicksand', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.toolbar {
+  background-color: #0096FF;
+  text-align: center;
+  color: white;
+  padding: 2%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card {
+  background-color: #FFFFFF;
+  border-radius: 6px;
+  box-shadow: 0 2px 3px #a8a8a8;
+  width: fit-content;
+  max-width: 60%;
+  margin: 32px auto;
+  padding: 16px;
+}
+
+.text-number-input {
+  border-radius: 6px;
+  background-color: #ffffff;
+  padding: .75em;
+  margin: 8px 0 8px 2rem;
+  border: 1px solid grey;
+}
+input[type="radio"]{
+  cursor: pointer;
+  margin: 4px;
+}
+
+.flex-item{
+  align-self: center;
+}
+
+.form{
+  column-count: 2;
+  width: 500px;
+  height: fit-content;
+  padding: 8px;
+}
+
+.flex-width{
+  width: 50%;
+}
+
+.radio-group{
+  display: flex;
+  padding: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.flex-container{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.multiline-text{
+  white-space: pre-wrap;
+}
+
+.button-blue{
+  font-family: 'Quicksand', sans-serif;
+  background-color: #0096FF;
+  border-radius: 6px;
+  border: 0;
+  padding: 10px 20px;
+  margin: 8px;
+  cursor: pointer;
   color: white;
+  font-weight: normal;
+  font-size: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.button-white{
+  font-family: 'Quicksand', sans-serif;
+  background-color: #FFFFFF;
+  border-radius: 6px;
+  border: 1px solid grey;
+  padding: 10px 20px;
+  margin: 8px;
+  cursor: pointer;
+  color: black;
+  font-weight: normal;
+  font-size: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+hr.separator-solid{
+  border: 1px solid #a8a8a8;
+  margin: 4px 0;
+}
+.image-width{
+  min-width: 2px;
+  width: 100%;
+}
+
+.image-width-50{
+  min-width: 2px;
+  width: 50%;
+}
+
+p{
+  margin: 8px 0;
+}
+
+.uid{
+  align-items: flex-end;
+}
+
+.frame-container{
+  position: relative;
+}
+
+.frame-container .frame-item{
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.text-center{
+  text-align: center;
+}
+.card-material {
+  width: fit-content;
+  max-width: 60%;
+  margin: 32px auto;
+  padding: 16px;
 }
