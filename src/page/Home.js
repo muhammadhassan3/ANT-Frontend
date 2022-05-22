@@ -52,7 +52,8 @@ function HomePage(){
         setDistanceEyesAndScreen(distance);
     }
 
-    const handleLogin = async e => {
+    const handleLogin = e => {
+        console.log(process.env)
         e.preventDefault()
 
         const user = {
