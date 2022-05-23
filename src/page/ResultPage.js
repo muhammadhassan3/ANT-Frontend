@@ -44,7 +44,7 @@ function ResultPage() {
 
     const onDownloadButtonClick = () => {
         axios({
-            url: `${process.env.BACKEND_URI}/api/v1/trial/${id}/result/download`,
+            url: `${process.env.REACT_APP_BACKEND_URI}/api/v1/trial/${id}/result/download`,
             method: 'GET',
             responseType: 'blob',
         }).then(response => {

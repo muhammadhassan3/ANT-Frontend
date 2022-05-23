@@ -6,7 +6,7 @@ import Loading from "../component/Loading";
 
 function InstructionPage() {
 
-  const uri = process.env.BACKEND_URI
+  const uri = process.env.REACT_APP_BACKEND_URI
   const navigate = useNavigate();
   const {state} = useLocation();
 

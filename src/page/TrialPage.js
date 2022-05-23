@@ -42,7 +42,7 @@ let cueLocation = -2;
 let count = -1;
 
 function TrialPage() {
-    const uri = process.env.BACKEND_URI
+    const uri = process.env.REACT_APP_BACKEND_URI
     const navigate = useNavigate();
     const {state} = useLocation();
     const [type, setType] = useState('')
