@@ -95,7 +95,7 @@ function ResultPage() {
                                         <p className={'flex-item'}>Mean accuracy (%)</p>
                                         <p className={'flex-item'}><b>{data.accuracy}</b></p>
                                     </div>
-                                    <div className={'row'} style={{alignSelf: 'flex-end', margin: '16px 0 0 0'}}>
+                                    <div className={'row'} style={{alignSelf: 'center', alignItems: 'center'}}>
                                         <Button variant={"outlined"} title={'Download result'}
                                                 onClick={onDownloadButtonClick}><DownloadRoundedIcon/></Button>
                                     </div>

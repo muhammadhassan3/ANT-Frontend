@@ -6,7 +6,6 @@ class UserDataService{
     }
 
     getInstructionData(uid){
-        console.log(uid)
         return http.get("/user/instructions", {params: {id: uid}})
     }
 }

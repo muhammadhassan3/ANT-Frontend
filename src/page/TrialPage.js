@@ -9,14 +9,12 @@ const styleAdult = {
     height: '100vh',
     backgroundColor: 'lightgrey',
     position: 'relative',
-    //cursor: 'none',
 }
 
 const styleChild = {
     height: '100vh',
     backgroundColor: 'cyan',
     position: 'relative',
-    //cursor: 'none'
 }
 
 let data = [];

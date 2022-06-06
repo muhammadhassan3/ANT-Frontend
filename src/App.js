@@ -5,6 +5,8 @@ import HomePage from './page/Home';
 import NotFound from './page/NotFoundPage';
 import TrialPage from './page/TrialPage';
 import ResultPage from "./page/ResultPage";
+import AdminLoginPage from "./page/AdminLoginPage";
+import AdminDashboardPage from "./page/AdminDashboardPage";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Route path='*' element={<NotFound/>}/>
       <Route exact path='/trial' element = {<TrialPage/>} />
       <Route exact path=':id/result' element = {<ResultPage/>} />
+      <Route path={'/admin/login'} element={<AdminLoginPage/>}/>
+      <Route path={'/admin/dashboard'} element={<AdminDashboardPage/>}/>
     </Routes>
     </div>
   );

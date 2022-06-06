@@ -1,9 +1,10 @@
 import React from "react";
 
-function Toolbar() {
+function Toolbar(props) {
+    const title = props.title || "Attention Network Test";
     return (
         <header className="toolbar">
-            <h3>Attention Network Test</h3>
+            <h3>{title}</h3>
         </header>
     )
 }
