@@ -7,6 +7,7 @@ import TrialPage from './page/TrialPage';
 import ResultPage from "./page/ResultPage";
 import AdminLoginPage from "./page/AdminLoginPage";
 import AdminDashboardPage from "./page/AdminDashboardPage";
+import AdminRedirectPage from './page/AdminRedirectPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path='*' element={<NotFound/>}/>
       <Route exact path='/trial' element = {<TrialPage/>} />
       <Route exact path=':id/result' element = {<ResultPage/>} />
+      <Route exact path='/admin/*' element = {<AdminRedirectPage/>} />
       <Route path={'/admin/login'} element={<AdminLoginPage/>}/>
       <Route path={'/admin/dashboard'} element={<AdminDashboardPage/>}/>
     </Routes>

@@ -45,6 +45,8 @@ function HomePage() {
     }
 
     const setGender = ({value}, label) => {
+        console.log(value)
+        console.log(label)
         if (value === 'on') {
             setSubjectGender(label);
         }
@@ -135,7 +137,7 @@ function HomePage() {
                                 Male
                             </label>
                             <label>
-                                <input type='radio' name='sex' onChange={e => setMode(e.target)}/>
+                                <input type='radio' name='sex' onChange={e => setGender(e.target, "female")}/>
                                 Female
                             </label>
                         </div>

@@ -18,7 +18,6 @@ import AdminDataServices from "../service/AdminDataServices";
 import axios from "axios";
 
 
-
 function AdminDashboardPage() {
     const navigate = useNavigate();
     const [anchorElUser, setAnchorElUser] = useState('');
@@ -52,7 +51,7 @@ function AdminDashboardPage() {
                     navigate('/admin/login')
                 }
             })
-        }
+        }else navigate('/admin/login')
     },[token])
 
     const menus = [

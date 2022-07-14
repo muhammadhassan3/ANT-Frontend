@@ -37,9 +37,15 @@ function InstructionPage() {
         setData(response.data)
         setLoaded(true)
       }).catch(error => {
-        if(error.response.data.message !== undefined){
-          alert(error.response.data.message)
-        }else alert(error.message)
+        console.log(error)
+        try{
+          if(error.response.status === 302){
+            navigate(error.response.data.target)
+          } else alert(error.response.data.message)
+        } catch(e){
+          alert(error.message)
+        } 
+        
       })
     }
   }, []);

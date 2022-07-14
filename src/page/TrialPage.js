@@ -20,7 +20,6 @@ const styleChild = {
 let data = [];
 let assetUrl = '', uid = '';
 let image = '';
-let position = -1;
 
 let firstFixationImage = '';
 let secondFixationImage = '';
@@ -36,13 +35,14 @@ let reactionTime = 0;
 let feedbackOnFlag = false;
 let targetLocation = '';
 let cueLocation = -2;
+let position = -1
 
-let count = -1;
 
 function TrialPage() {
     const uri = process.env.REACT_APP_BACKEND_URI
     const navigate = useNavigate();
     const {state} = useLocation();
+
     const [type, setType] = useState('')
     const [loaded, setLoaded] = useState(false);
     const [messageLayout, setMessageLayout] = useState(true);
@@ -62,6 +62,10 @@ function TrialPage() {
 
     const feedbackDelay = 1000
 
+    useEffect(()=>{
+        console.log(data[position])
+    }, [position])
+
     useEffect(() => {
         try {
             TrialDataService.getTrialData(state.token).then(response => {
@@ -71,9 +75,13 @@ function TrialPage() {
                 image = state.images
                 assetUrl = state.assetsUrl
                 setLoaded(true)
+                window.addEventListener('keydown', handleKeyDown);
                 focusRef.current && focusRef.current.focus()
-
-                setMessageToLayout("Are You Ready?", () => setMessageLayout(false))
+        
+                setMessageToLayout("Are You Ready?", () => {
+                    setMessageLayout(false)
+                    document.getElementById("container").focus()
+                })
             }).catch(error => {
                 try {
                     setMessageToLayout(error.response.data.message, () => navigate("../"))
@@ -104,11 +112,8 @@ function TrialPage() {
         lastFixationImage = image.fixationImage;
         currentImage = image.fixationImage;
 
-        if(count > 2){
-            return;
-        }else count += 1;
-        if (data.length > position && count < 2) {
-            position += 1;
+        if (data.length > position) {
+            position += 1
             if (data[position].cueLocation === 'nocue') {
                 cueLocation = 0;
             } else if (data[position].cueLocation === 'centercue') {
@@ -276,6 +281,7 @@ function TrialPage() {
     }
 
     const setImageToLayout = () => {
+        console.log(`currentImage: ${currentImage} ${currentImage === image.correctImage} ${currentImage === image.incorrectImage} ${currentImage === image.noresponseImage}`)
         if (currentImage === image.cueImage) {
             if (data[position].cueLocation !== "nocue") {
                 if (data[position].cueLocation === 'centercue') {
@@ -318,7 +324,7 @@ function TrialPage() {
         if (currentImage === image.correctImage || currentImage === image.incorrectImage || currentImage === image.noresponseImage) {
             setImagetoState(currentImage, ['center'])
         } else {
-             setImagetoState()
+             setImagetoState('',[])
         }
     }
 
@@ -360,11 +366,11 @@ function TrialPage() {
         let message = '';
         if (data[position].blockNumber === 0) {
             message = "You have finished the pratice block. Click Ok to start the test."
-        } else if (data[position].blockNumber === 1) {
+        } else if (data[position + 1].blockNumber === 1) {
             message = "You have finished the first block out of three test blocks. Take a break! click Ok to continue the test."
-        } else if (data[position].blockNumber === 2) {
+        } else if (data[position + 1].blockNumber === 2) {
             message = "You have finished the second block out of three test blocks. Take a break! Press ENTER or click CONTINUE to continue the test.";
-        } else if (data[position].blockNumber === 3) {
+        } else if (data[position + 1].blockNumber === 3) {
             message = "You have finished the last block out of three test blocks. Click CONTINUE to see the result.";
         }
         setMessageToLayout(message, callback)
@@ -412,7 +418,7 @@ function TrialPage() {
         displayFeedback()
     }
 
-    const onKeyPress = (e) => {
+    const handleKeyDown = (e) => {
         if (messageLayout) {
             if (e.key === 'Enter' && uid !== '') {
                 setMessageLayout(false);
@@ -429,11 +435,9 @@ function TrialPage() {
         }
     }
 
-
-
     return (
         (loaded ?
-            <div style={(type === 'child' ? styleChild : styleAdult)} onKeyDown={onKeyPress} tabIndex={0} ref={focusRef}>
+            <div style={(type === 'child' ? styleChild : styleAdult)}  tabIndex={0} ref={focusRef} onFocus={() => console.log("Focus succes")}>
                 <Toolbar/>
                 <div className={'uid'}><p>UID: {uid}</p></div>
                 {(messageLayout ?
