@@ -366,11 +366,11 @@ function TrialPage() {
         let message = '';
         if (data[position].blockNumber === 0) {
             message = "You have finished the pratice block. Click Ok to start the test."
-        } else if (data[position + 1].blockNumber === 1) {
+        } else if (data[position].blockNumber === 1) {
             message = "You have finished the first block out of three test blocks. Take a break! click Ok to continue the test."
-        } else if (data[position + 1].blockNumber === 2) {
+        } else if (data[position].blockNumber === 2) {
             message = "You have finished the second block out of three test blocks. Take a break! Press ENTER or click CONTINUE to continue the test.";
-        } else if (data[position + 1].blockNumber === 3) {
+        } else if (data[position].blockNumber === 3) {
             message = "You have finished the last block out of three test blocks. Click CONTINUE to see the result.";
         }
         setMessageToLayout(message, callback)
