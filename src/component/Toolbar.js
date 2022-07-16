@@ -15,7 +15,7 @@ function Toolbar(props) {
     return (
         <header className="toolbar">
             <h3>{title}</h3>
-            <Button variant={"text"} title={"Keluar"}><Logout sx={{color: "white"}}/></Button>
+            <Button variant={"text"} title={"Keluar"} onClick={logout}><Logout sx={{color: "white"}}/></Button>
         </header>
     )
 }
