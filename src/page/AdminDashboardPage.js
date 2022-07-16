@@ -21,7 +21,6 @@ import axios from "axios";
 function AdminDashboardPage() {
     const navigate = useNavigate();
     const [anchorElUser, setAnchorElUser] = useState('');
-    const [token, setToken] = useState('')
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const {state} = useLocation();
@@ -29,13 +28,11 @@ function AdminDashboardPage() {
 
     useEffect(() => {
         document.title = 'Admin Dashboard'
-        setToken(state.token)
     }, [])
 
     useEffect(() => {
-        if(token){
-            console.log(token)
-            AdminDataServices.getAllUsers(token).then(response => {
+        if(state.token){
+            AdminDataServices.getAllUsers(state.token).then(response => {
                 setData(response.data.data)
                 setLoading(false)
             }).catch(err => {
@@ -48,11 +45,12 @@ function AdminDashboardPage() {
                 }
                 alert(message)
                 if(err.response.status === 401){
+                    localStorage.
                     navigate('/admin/login')
                 }
             })
         }else navigate('/admin/login')
-    },[token])
+    },[])
 
     const menus = [
         {
@@ -66,7 +64,9 @@ function AdminDashboardPage() {
     ]
 
     const handleMenuClick = (url) => {
-        navigate(url);
+        if(url === '../admin/trial-list'){
+            alert("This section is under construction")
+        }else navigate(url);
     }
 
     const handleOpenAccountMenu = (e) => {
@@ -166,7 +166,7 @@ function AdminDashboardPage() {
                               <Typography className={'flex-item'}>{user.distanceEyesAndScreen}</Typography>
                           </div>
                           <div className={'row'}>
-                              <Button className={'flex-item'} variant={'outlined'} sx={{m: 1}}>Show Trial Records</Button>
+                              <Button className={'flex-item'} variant={'outlined'} sx={{m: 1}} onClick={() => alert("This section is under construction")}>Show Trial Records</Button>
                               <Tooltip title={"Download excel file"}><IconButton onClick={downloadButton.clickable && (e => handleDownloadButton(user._id))}><DownloadRounded/></IconButton></Tooltip>
                           </div>
                       </div>

@@ -62,11 +62,17 @@ function TrialPage() {
 
     const feedbackDelay = 1000
 
-    useEffect(()=>{
-        console.log(data[position])
-    }, [position])
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyDown)
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    },[timer])
 
     useEffect(() => {
+        if(!localStorage.token){
+            alert("Silahkan Mendaftarkan diri terlebih dahulu")
+            navigate('../')
+        }
+
         try {
             TrialDataService.getTrialData(state.token).then(response => {
                 data = response.data;
@@ -75,12 +81,8 @@ function TrialPage() {
                 image = state.images
                 assetUrl = state.assetsUrl
                 setLoaded(true)
-                window.addEventListener('keydown', handleKeyDown);
-                focusRef.current && focusRef.current.focus()
-        
                 setMessageToLayout("Are You Ready?", () => {
                     setMessageLayout(false)
-                    document.getElementById("container").focus()
                 })
             }).catch(error => {
                 try {
@@ -189,7 +191,6 @@ function TrialPage() {
             reactionTime = 0;
             beginTimeOnFlag = true;
         } else if (source === 'targetTimer') {
-            console.log(data[position])
             if (data[position].correct === -1 && data[position].blockNumber === 0) {
                 setTimerWithCheck({
                     source: 'feedbackTimer',
@@ -281,7 +282,6 @@ function TrialPage() {
     }
 
     const setImageToLayout = () => {
-        console.log(`currentImage: ${currentImage} ${currentImage === image.correctImage} ${currentImage === image.incorrectImage} ${currentImage === image.noresponseImage}`)
         if (currentImage === image.cueImage) {
             if (data[position].cueLocation !== "nocue") {
                 if (data[position].cueLocation === 'centercue') {
@@ -389,6 +389,7 @@ function TrialPage() {
                 message = e.message;
             }
             setMessageToLayout(message, () =>{
+                setMessageLayout(false);
                 saveData();
             })
         })
@@ -419,11 +420,12 @@ function TrialPage() {
     }
 
     const handleKeyDown = (e) => {
+        console.log(`messageLayout: ${messageLayout} source: ${timer.source}`)
         if (messageLayout) {
             if (e.key === 'Enter' && uid !== '') {
                 setMessageLayout(false);
                 setMessage('');
-            }else navigate('../')
+            }
         } else if(timer.source === 'targetTimer'){
             if (e.key === 'ArrowLeft') {
                 recordReactionTime(e.key)

@@ -29,6 +29,10 @@ function InstructionPage() {
   });
 
   useEffect(() => {
+    if(!localStorage.token){
+      alert("Silahkan Mendaftarkan diri terlebih dahulu")
+      navigate('../')
+    }
     if(!state){
       alert("Please enter your data first")
       navigate('../')

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Toolbar from "../component/Toolbar";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import TrialDataService from "../service/TrialDataService";
 import Loading from "../component/Loading";
 import MessageLayout from "../component/MessageLayout";
@@ -15,7 +15,14 @@ function ResultPage() {
     const [loaded, setLoaded] = useState(false);
     const [messageLayout, setMessageLayout] = useState(false);
     const {id} = useParams();
+    const navigate = useNavigate();
 
+    useEffect(()=>{
+        if(!localStorage.token){
+            alert("Silahkan Mendaftarkan diri terlebih dahulu")
+            navigate('../')
+        }
+    },[])
     useEffect(() => {
         setLoaded(false)
         TrialDataService.getTrialResult(id).then(response => {
